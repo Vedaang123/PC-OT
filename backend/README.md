@@ -1,7 +1,7 @@
 ## Getting Started
 ### 1. Create a virtual environment in the project directory and run:
 ```bash
-python -m venv venv
+python -m venv .venv
 ```
 
 Activate the environment:
