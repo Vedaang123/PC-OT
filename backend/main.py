@@ -25,7 +25,7 @@ from langchain_core.tools import tool
 load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") 
 # IMPORTANT: You must create an alumni_data.csv file for this to work.
-CSV_FILE = "alumni_data.csv" 
+CSV_FILE = os.getenv("DATABASE_LOC")
 CHUNK_SIZE = 512
 K_RETRIEVAL = 3 
 

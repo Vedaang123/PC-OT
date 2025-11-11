@@ -1,35 +1,30 @@
-# Core web framework
+# --- Core Web Framework ---
 fastapi
 uvicorn
-
-# CORS middleware for FastAPI
 python-multipart
 aiofiles
-
-# Environment variables
 python-dotenv
 
-# LangChain ecosystem
-langchain
-langchain-core
-langchain-community
-langchain-text-splitters
-langchain-classic
-langchain-google-genai
+# --- LangChain Ecosystem (Modern Unified Versions) ---
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-community>=0.3.0
+langchain-text-splitters>=0.3.0
+langchain-google-genai>=0.3.0
 
-# Vector store
-chromadb
+# --- Vector Store ---
+chromadb>=0.5.0
 
-# Document loaders (CSVLoader)
+# --- Data Handling ---
 pandas
 numpy
 
-# Pydantic (ensure v1 or compatible mode for FastAPI)
-pydantic
+# --- Pydantic (v2; FastAPI compatibility ensured) ---
+pydantic>=2.0.0
 
-# For Google Gemini API usage
-google-generativeai
+# --- Google Gemini API ---
+google-generativeai>=0.7.0
 
-# Optional (for local development, debugging)
+# --- Development & Debugging ---
 tqdm
 requests
