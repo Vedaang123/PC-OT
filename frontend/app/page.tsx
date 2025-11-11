@@ -56,17 +56,22 @@ export default function Home() {
     };
 
     return (
-        <main className="min-h-screen bg-background text-foreground px-4 py-8">
-            <div className="max-w-5xl mx-auto space-y-10">
+        <main className="min-h-screen bg-linear-to-b from-slate-950 via-slate-900 to-slate-950 text-slate-100 px-4 py-10 font-[Inter]">
+            <div className="max-w-5xl mx-auto space-y-12">
                 <div className="text-center space-y-2">
-                    <h1 className="text-4xl font-bold tracking-tight">
+                    <h1 className="text-5xl font-bold tracking-tight bg-linear-to-r from-emerald-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">
                         Alumni Retrieval System
                     </h1>
+                    <p className="text-slate-400 text-sm">
+                        Query the knowledge base using natural language.
+                    </p>
                 </div>
 
-                <Card className="border-muted bg-card/60 backdrop-blur-sm">
+                <Card className="border-none bg-slate-800/60 backdrop-blur-xl shadow-2xl">
                     <CardHeader>
-                        <CardTitle>Query Alumni Data</CardTitle>
+                        <CardTitle className="text-lg font-semibold text-slate-100">
+                            Query Alumni Data
+                        </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <Textarea
@@ -74,19 +79,19 @@ export default function Home() {
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             placeholder="Enter your natural language query here..."
-                            className="resize-none"
+                            className="resize-none border-none bg-slate-900/60 text-slate-100 focus:ring-2 focus:ring-emerald-400 focus-visible:ring-0 focus-visible:ring-offset-0"
                         />
                         <Button
                             onClick={runRagChain}
                             disabled={loading}
                             className={cn(
-                                "w-full sm:w-auto font-semibold",
-                                "bg-linear-to-r from-emerald-600 to-emerald-400 text-white hover:from-emerald-500 hover:to-emerald-300"
+                                "w-full sm:w-auto font-semibold py-2 px-6 rounded-lg transition-all duration-200",
+                                "bg-linear-to-r from-emerald-600 to-emerald-400 text-white hover:scale-[1.02]"
                             )}
                         >
                             {loading ? (
                                 <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />{" "}
+                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                                     Executing RAG Chain...
                                 </>
                             ) : (
@@ -97,7 +102,7 @@ export default function Home() {
                             )}
                         </Button>
                         {error && (
-                            <div className="text-sm text-red-500 bg-red-950/30 border border-red-900 rounded-md p-2">
+                            <div className="text-sm text-red-400 bg-red-950/30 border border-red-800 rounded-md p-2">
                                 <p className="font-medium">Error:</p>
                                 <p>{error}</p>
                             </div>
@@ -106,32 +111,31 @@ export default function Home() {
                 </Card>
 
                 <div className="grid md:grid-cols-2 gap-8">
-                    {/* Context Section */}
-                    <Card className="border-t-4 border-t-emerald-500 bg-card/70 backdrop-blur-sm">
+                    <Card className="border-none bg-slate-800/60 backdrop-blur-xl shadow-lg transition-all duration-200 hover:shadow-emerald-500/20">
                         <CardHeader>
-                            <CardTitle className="flex items-center gap-2 text-emerald-400">
+                            <CardTitle className="flex items-center gap-2 text-emerald-400 text-lg">
                                 <BookOpen className="w-5 h-5" />
-                                Retrieved Context (Sources)
+                                Retrieved Context
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <ScrollArea className="h-[350px] rounded-md border p-4">
+                            <ScrollArea className="h-[350px] rounded-md border border-slate-700 p-4 bg-slate-900/40">
                                 {context.length > 0 ? (
                                     context.map((chunk, i) => (
                                         <div
                                             key={i}
-                                            className="mb-3 bg-muted/20 p-3 rounded-lg border-l-4 border-emerald-500 text-sm"
+                                            className="mb-3 bg-slate-800/60 p-3 rounded-lg border-l-4 border-emerald-500 text-sm"
                                         >
                                             <p className="font-semibold mb-1 text-emerald-300">
                                                 Source {i + 1}
                                             </p>
-                                            <pre className="text-muted-foreground whitespace-pre-wrap font-mono text-xs">
+                                            <pre className="text-slate-300 whitespace-pre-wrap font-mono text-xs leading-relaxed">
                                                 {chunk}
                                             </pre>
                                         </div>
                                     ))
                                 ) : (
-                                    <p className="text-muted-foreground italic">
+                                    <p className="text-slate-400 italic">
                                         No context yet or backend error.
                                     </p>
                                 )}
@@ -139,17 +143,16 @@ export default function Home() {
                         </CardContent>
                     </Card>
 
-                    {/* Answer Section */}
-                    <Card className="border-t-4 border-t-indigo-500 bg-card/70 backdrop-blur-sm">
+                    <Card className="border-none bg-slate-800/60 backdrop-blur-xl shadow-lg transition-all duration-200 hover:shadow-indigo-500/20">
                         <CardHeader>
-                            <CardTitle className="flex items-center gap-2 text-indigo-400">
+                            <CardTitle className="flex items-center gap-2 text-indigo-400 text-lg">
                                 <MessageSquare className="w-5 h-5" />
-                                Final Answer (from LLM)
+                                Final Answer
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <ScrollArea className="h-[350px] rounded-md border p-4">
-                                <p className="whitespace-pre-wrap text-foreground">
+                            <ScrollArea className="h-[350px] rounded-md border border-slate-700 p-4 bg-slate-900/40">
+                                <p className="whitespace-pre-wrap text-slate-100 leading-relaxed text-sm">
                                     {answer}
                                 </p>
                             </ScrollArea>
