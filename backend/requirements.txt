@@ -1,0 +1,30 @@
+# --- Core Web Framework ---
+fastapi
+uvicorn
+python-multipart
+aiofiles
+python-dotenv
+
+# --- LangChain Ecosystem (Modern Unified Versions) ---
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-community>=0.3.0
+langchain-text-splitters>=0.3.0
+langchain-google-genai>=0.3.0
+
+# --- Vector Store ---
+chromadb>=0.5.0
+
+# --- Data Handling ---
+pandas
+numpy
+
+# --- Pydantic (v2; FastAPI compatibility ensured) ---
+pydantic>=2.0.0
+
+# --- Google Gemini API ---
+google-generativeai>=0.7.0
+
+# --- Development & Debugging ---
+tqdm
+requests
