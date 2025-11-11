@@ -1,6 +1,5 @@
 node_modules
 package.json
-episodes
 .env
 .*
 README.md
