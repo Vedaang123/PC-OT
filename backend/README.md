@@ -7,11 +7,11 @@ python -m venv .venv
 Activate the environment:
 - Windows:
 ```bash
-venv\Scripts\Activate.ps1
+.venv\Scripts\Activate.ps1
 ```
 - macOS/Linux:
 ```bash
-source venv/bin/activate
+source .venv/bin/activate
 ```
 ### 2. Set Up Gemini API key
 1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
