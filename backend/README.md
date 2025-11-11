@@ -1,5 +1,5 @@
 ## Getting Started
-### 1. create a virtual environment in the project directory and run:
+### 1. Create a virtual environment in the project directory and run:
 ```bash
 python -m venv venv
 ```
