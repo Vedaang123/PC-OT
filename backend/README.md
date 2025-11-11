@@ -30,6 +30,6 @@ pip install -r requirements.txt
 ### 4. Run the Backend Server
 Start the FastAPI backend using:
 ```bash
-uvicorn rag_api:app --reload
+uvicorn main:app --reload
 ```
 This launches the server at [http://127.0.0.1:8000](http://127.0.0.1:8000)
