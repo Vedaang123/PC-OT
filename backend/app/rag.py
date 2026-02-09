@@ -4,11 +4,9 @@ from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmb
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_core.prompts import ChatPromptTemplate
+from langchain.chains import create_retrieval_chain
+from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_community.document_loaders import CSVLoader
-
-# --- CORRECT IMPORTS FOR NEWER LANGCHAIN VERSIONS ---
-from langchain_classic.chains.combine_documents import create_stuff_documents_chain
-from langchain_classic.chains import create_retrieval_chain
 
 from app.config import settings
 from app.tools import calculate_average_experience
@@ -16,7 +14,7 @@ from app.tools import calculate_average_experience
 def build_rag_chain():
     print("--- Initializing RAG components ---")
     try:
-        # 1. Initialize LLM and Bind Tools
+
         llm = ChatGoogleGenerativeAI(
             model=settings.MODEL_NAME,
             temperature=0.1,
@@ -24,7 +22,6 @@ def build_rag_chain():
         )
         llm_with_tools = llm.bind_tools(tools=[calculate_average_experience])
 
-        # 2. Embeddings and Data Loading
         embeddings = GoogleGenerativeAIEmbeddings(
             model=settings.EMBEDDING_MODEL,
             api_key=settings.GEMINI_API_KEY
@@ -40,13 +37,11 @@ def build_rag_chain():
         splits = text_splitter.split_documents(documents)
         print(f" -> Documents split into {len(splits)} chunks.")
 
-        # 3. Vector Store
         start_time = time.time()
         vectorstore = Chroma.from_documents(documents=splits, embedding=embeddings)
         retriever = vectorstore.as_retriever(search_kwargs={"k": settings.K_RETRIEVAL})
         print(f" -> Embeddings stored in {round(time.time() - start_time, 2)} seconds.")
 
-        # 4. Chain Construction
         template = """
         You are an expert alumni data assistant.
         1. Calculation (Tool Use): Extract numerical values and use tools for math.
@@ -68,10 +63,6 @@ def build_rag_chain():
 
     except Exception as e:
         print(f"RAG Initialization Error: {e}")
-        # Print full traceback for debugging if needed
-        import traceback
-        traceback.print_exc()
         sys.exit(1)
 
-# Singleton instance
 rag_chain = build_rag_chain()

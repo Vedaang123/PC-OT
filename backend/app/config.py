@@ -11,8 +11,7 @@ class Settings:
     K_RETRIEVAL = 3
     MODEL_NAME = "gemini-2.5-flash"
     
-    # UPDATED: 'text-embedding-004' is deprecated. 
-    # Using 'models/gemini-embedding-001' which is the current stable version.
+
     EMBEDDING_MODEL = "models/gemini-embedding-001"
 
     def validate(self):

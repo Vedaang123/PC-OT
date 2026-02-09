@@ -19,7 +19,7 @@ async def execute_query(request: QueryRequest):
         raise HTTPException(status_code=400, detail="Query cannot be empty.")
 
     try:
-        # Execute chain
+
         response = await rag_chain.ainvoke({"input": request.query})
 
         final_answer = response.get('answer', 'Error: No answer generated.')
