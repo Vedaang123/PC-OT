@@ -1,10 +1,11 @@
 fastapi
 uvicorn
 python-dotenv
-pydantic
-langchain-google-genai
-langchain-text-splitters
+langchain
 langchain-community
 langchain-core
+langchain-google-genai
+langchain-text-splitters
 langchain-classic
 chromadb
+pydantic
